@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "language": "pt-BR",
+  "title": "Perguntas de anamnese LeiteCheck",
+  "questions": [
+    {"id":"respiratory_distress","label":"Há dificuldade respiratória evidente (respiração muito trabalhosa, boca aberta ou pescoço estendido)?","type":"boolean","required_for_clear_result":true},
+    {"id":"unable_to_rise","label":"A vaca está caída e não consegue se levantar?","type":"boolean","required_for_clear_result":true},
+    {"id":"sudden_left_abdominal_distension","label":"O flanco esquerdo/abdômen aumentou de volume de forma súbita?","type":"boolean","required_for_clear_result":true},
+    {"id":"abnormal_milk","label":"O leite está visivelmente alterado (por exemplo, grumos ou mudança de cor)?","type":"boolean","required_for_clear_result":true},
+    {"id":"udder_inflammation","label":"Há úbere ou quarto mamário inchado, quente, avermelhado ou dolorido?","type":"boolean","required_for_clear_result":true},
+    {"id":"fever","label":"Foi medida temperatura acima do valor habitual/orientado pelo veterinário?","type":"boolean","required_for_clear_result":false},
+    {"id":"reduced_appetite","label":"O apetite diminuiu ou a vaca parou de comer?","type":"boolean","required_for_clear_result":false},
+    {"id":"milk_drop","label":"A produção de leite caiu em relação ao padrão recente conhecido?","type":"boolean","required_for_clear_result":false},
+    {"id":"onset_hours","label":"Há quantas horas os sinais começaram? (opcional)","type":"number","required_for_clear_result":false}
+  ]
+}

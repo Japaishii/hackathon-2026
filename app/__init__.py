@@ -1,0 +1,1 @@
+"""LeiteCheck local application."""

@@ -1,0 +1,101 @@
+from pathlib import Path
+import json
+
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+
+from app import database
+from app.schemas import Animal, AnimalCreate, Assessment, AssessmentCreate, FollowUpUpdate
+from app.specialist.engine import infer, load_knowledge_base
+
+
+ROOT = Path(__file__).resolve().parents[1]
+KNOWLEDGE = ROOT / "knowledge"
+RULES = load_knowledge_base(KNOWLEDGE / "rules.json")
+QUESTIONS = json.loads((KNOWLEDGE / "questions.json").read_text(encoding="utf-8"))
+question_by_id = {q["id"]: q for q in QUESTIONS["questions"]}
+
+app = FastAPI(title="LeiteCheck", version="1.0.0", description="Anamnese e triagem explicável com regras determinísticas locais.")
+app.mount("/static", StaticFiles(directory=ROOT / "static"), name="static")
+
+
+@app.on_event("startup")
+def startup() -> None:
+    database.initialize()
+
+
+@app.get("/", response_class=HTMLResponse, include_in_schema=False)
+def home() -> str:
+    return (ROOT / "templates" / "index.html").read_text(encoding="utf-8")
+
+
+@app.get("/api/questions")
+def get_questions() -> dict:
+    return QUESTIONS
+
+
+@app.get("/api/rules")
+def get_rules() -> dict:
+    return {"version": RULES["version"], "priority_order": RULES["priority_order"], "rules": RULES["rules"], "sources": RULES["sources"]}
+
+
+@app.get("/api/animals", response_model=list[Animal])
+def get_animals():
+    return database.list_animals()
+
+
+@app.post("/api/animals", response_model=Animal, status_code=201)
+def post_animal(payload: AnimalCreate):
+    try:
+        return database.create_animal(payload.model_dump())
+    except Exception as exc:
+        if "UNIQUE constraint failed" in str(exc):
+            raise HTTPException(status_code=409, detail="Já existe um animal com esse identificador.") from exc
+        raise
+
+
+@app.get("/api/assessments", response_model=list[Assessment])
+def get_assessments(animal_id: int | None = None):
+    return database.list_assessments(animal_id)
+
+
+@app.get("/api/assessments/{assessment_id}", response_model=Assessment)
+def get_assessment(assessment_id: int):
+    record = database.get_assessment(assessment_id)
+    if not record:
+        raise HTTPException(404, "Avaliação não encontrada.")
+    return record
+
+
+@app.post("/api/assessments", response_model=Assessment, status_code=201)
+def post_assessment(payload: AssessmentCreate):
+    if payload.animal_id is not None and not database.animal_exists(payload.animal_id):
+        raise HTTPException(404, "Animal não encontrado.")
+    unknown = set(payload.answers) - set(question_by_id)
+    if unknown:
+        raise HTTPException(422, f"Perguntas desconhecidas: {', '.join(sorted(unknown))}")
+    for key, value in payload.answers.items():
+        question = question_by_id[key]
+        if value is not None and question["type"] == "boolean" and not isinstance(value, bool):
+            raise HTTPException(422, f"A resposta para {key} deve ser sim, não ou desconhecido.")
+        if value is not None and question["type"] == "number" and (isinstance(value, bool) or not isinstance(value, (int, float))):
+            raise HTTPException(422, f"A resposta para {key} deve ser numérica ou desconhecida.")
+    result = infer(payload.answers, RULES).to_dict()
+    return database.save_assessment(payload.animal_id, payload.answers, result)
+
+
+@app.patch("/api/assessments/{assessment_id}/follow-up", response_model=Assessment)
+def patch_follow_up(assessment_id: int, payload: FollowUpUpdate):
+    record = database.update_follow_up(assessment_id, payload.follow_up)
+    if not record:
+        raise HTTPException(404, "Avaliação não encontrada.")
+    return record
+
+
+@app.get("/api/assessments/{assessment_id}/report")
+def report(assessment_id: int):
+    record = database.get_assessment(assessment_id)
+    if not record:
+        raise HTTPException(404, "Avaliação não encontrada.")
+    return {"assessment": record, "questions": question_by_id, "report_note": "Registro de apoio à anamnese; não é laudo nem diagnóstico."}

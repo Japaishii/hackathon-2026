@@ -25,6 +25,70 @@ function rulesSourceById(id) {
   return sourceData.find((source) => source.id === id);
 }
 
+
+
+let toastTimeout;
+
+function showToast(title, message, type = "success") {
+  const toast = document.getElementById("toast");
+  const titleElement = document.getElementById("toast-title");
+  const messageElement = document.getElementById("toast-message");
+  const iconElement = toast?.querySelector(".toast-icon");
+
+  if (!toast || !titleElement || !messageElement) {
+    console.warn("Notificação:", title, message);
+    return;
+  }
+
+  clearTimeout(toastTimeout);
+
+  titleElement.textContent = title;
+  messageElement.textContent = message;
+
+  toast.classList.remove("success", "error", "info");
+  toast.classList.add(type);
+
+  if (iconElement) {
+    iconElement.textContent =
+      type === "error" ? "!" :
+      type === "info" ? "i" : "✓";
+  }
+
+  toast.classList.add("show");
+
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove("show");
+  }, type === "error" ? 6500 : 4000);
+}
+
+document.getElementById("toast-close")?.addEventListener(
+  "click",
+  () => {
+    clearTimeout(toastTimeout);
+    document.getElementById("toast")?.classList.remove("show");
+  }
+);
+
+function friendlyError(error) {
+  const message = error?.message || "Erro desconhecido.";
+
+  if (
+    error instanceof TypeError &&
+    /failed to fetch|networkerror|load failed/i.test(message)
+  ) {
+    return "Não foi possível conectar ao servidor. Verifique se o BoviHealth está em execução e tente novamente.";
+  }
+
+  return message;
+}
+
+
+document.getElementById("toast-close")?.addEventListener("click", () => {
+  clearTimeout(toastTimeout);
+  document.getElementById("toast")?.classList.remove("show");
+});
+
+
 function escapeHtml(value) {
   return String(value ?? "").replace(
     /[&<>"']/g,
@@ -771,13 +835,14 @@ $("#follow-up-form").addEventListener(
 
       await loadHistory();
 
-
-      $("#follow-up-status").textContent =
-        `Acompanhamento da avaliação #${updated.id} salvo com sucesso.`;
-
+      showToast(
+        "Acompanhamento salvo!",
+        `A avaliação #${updated.id} foi atualizada com sucesso.`,
+        "success"
+      );
+      
     } catch (error) {
-      $("#follow-up-error").textContent =
-        error.message;
+      $("#follow-up-error").textContent = friendlyError(error);
 
     } finally {
       save.disabled = false;
@@ -863,7 +928,11 @@ async function openAssessment(id) {
     renderResult(record);
 
   } catch (error) {
-    alert(error.message);
+    showToast(
+      "Erro ao abrir triagem",
+      friendlyError(error),
+      "error"
+    );
   }
 }
 
@@ -1133,11 +1202,17 @@ $("#delete-assessment-confirm").addEventListener(
 
       closeDeleteModal();
 
+      showToast(
+        "Triagem excluída",
+        `A avaliação #${id} foi excluída do histórico.`,
+        "info"
+      );
+
       await loadHistory();
 
     } catch (error) {
       $("#delete-assessment-error").textContent =
-        error.message;
+  friendlyError(error);
 
     } finally {
       button.disabled = false;
@@ -1215,8 +1290,10 @@ async function init() {
     await loadHistory();
 
   } catch (error) {
-    alert(
-      `Não foi possível carregar o BoviHealth: ${error.message}`
+    showToast(
+      "Não foi possível carregar o BoviHealth",
+      friendlyError(error),
+      "error"
     );
   }
 }
@@ -1249,11 +1326,21 @@ $("#assessment-form").addEventListener(
 
       renderResult(record);
 
+      showToast(
+        "Triagem registrada!",
+        `A avaliação #${record.id} foi gerada com sucesso.`,
+        "success"
+      );
+
       historyPage = 1;
       await loadHistory();
 
     } catch (error) {
-      alert(error.message);
+      showToast(
+        "Não foi possível gerar a triagem",
+        friendlyError(error),
+        "error"
+      );
     }
   }
 );
@@ -1304,10 +1391,17 @@ $("#animal-form").addEventListener(
 
       await loadAnimals();
 
-      alert("Animal cadastrado.");
+      showToast(
+        "Animal cadastrado!",
+        "O animal foi adicionado ao rebanho com sucesso."
+      );
 
     } catch (error) {
-      alert(error.message);
+      showToast(
+        "Erro ao cadastrar animal",
+        friendlyError(error),
+        "error"
+      );
     }
   }
 );

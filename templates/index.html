@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="pt-BR">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Anamnese e triagem explicável de bovinos leiteiros"><title>BoviHealth — Anamnese</title><link rel="stylesheet" href="/static/app.css"><link rel="stylesheet" href="/static/experience.css"><link rel="stylesheet" href="/static/reference-layout.css"><link rel="stylesheet" href="/static/bovihealth.css"><link rel="stylesheet" href="/static/dashboard-final.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Anamnese e triagem explicável de bovinos leiteiros"><title>BoviHealth — Anamnese</title><link rel="stylesheet" href="/static/app.css"><link rel="stylesheet" href="/static/experience.css"><link rel="stylesheet" href="/static/reference-layout.css"><link rel="stylesheet" href="/static/bovihealth.css"><link rel="stylesheet" href="/static/dashboard-final.css"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2324543a'/%3E%3Ctext x='32' y='45' font-size='39' text-anchor='middle'%3E%F0%9F%90%84%3C/text%3E%3C/svg%3E"></head>
 <body>
 <header class="topbar"><a class="brand" href="/" aria-label="BoviHealth, início"><span class="brand-mark">B</span><span><strong>BoviHealth</strong><small>SAÚDE DO REBANHO</small></span></a><div class="topbar-right"><nav class="header-links"><a href="#home">Início</a><a href="#assessment-form">Triagem</a><a href="#animals">Rebanho</a><a href="#history">Avaliações</a><a href="#sources-card">Conhecimento</a></nav></div></header>
 <div class="app-shell">
@@ -101,4 +101,29 @@
 </div>
 <footer><span>BoviHealth <i>·</i> prova de conceito para o Hackathon UFJF 2026</span><span>Triagem de apoio · não substitui avaliação veterinária</span></footer>
 <script src="/static/app.js" defer></script>
+
+<div
+  id="toast"
+  class="toast"
+  role="status"
+  aria-live="polite"
+  aria-atomic="true"
+>
+  <span class="toast-icon" aria-hidden="true">✓</span>
+
+  <div class="toast-content">
+    <strong id="toast-title"></strong>
+    <p id="toast-message"></p>
+  </div>
+
+  <button
+    type="button"
+    class="toast-close"
+    id="toast-close"
+    aria-label="Fechar notificação"
+  >
+    ×
+  </button>
+</div>
+
 </body></html>

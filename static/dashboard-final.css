@@ -1159,3 +1159,171 @@ footer {
     font-size: 9px;
   }
 }
+
+
+/* ========================================
+   BOVIHEALTH — NOTIFICAÇÕES
+   ======================================== */
+
+.toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 9999;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  box-sizing: border-box;
+  width: min(370px, calc(100vw - 32px));
+  padding: 17px;
+
+  background: #ffffff;
+  border: 1px solid #d7e9da;
+  border-left: 4px solid #328653;
+  border-radius: 14px;
+
+  box-shadow: 0 14px 40px rgba(20, 48, 32, 0.16);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-12px);
+  pointer-events: none;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    visibility 0.25s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.toast-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+
+  background: #e5f3e8;
+  color: #2b7847;
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.toast-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.toast-content strong {
+  display: block;
+  margin-bottom: 5px;
+
+  color: #204b34;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.toast-content p {
+  margin: 0;
+  color: #64776a;
+  font-size: 13px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.toast-close {
+  flex-shrink: 0;
+  padding: 0 2px;
+
+  border: none;
+  background: transparent;
+  color: #849388;
+
+  font-size: 23px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.toast-close:hover {
+  color: #204b34;
+}
+
+/* Sucesso */
+
+.toast.success {
+  border-left-color: #328653;
+}
+
+.toast.success .toast-icon {
+  background: #e5f3e8;
+  color: #2b7847;
+}
+
+/* Erro */
+
+.toast.error {
+  border-color: #f0d3d3;
+  border-left-color: #c44545;
+}
+
+.toast.error .toast-icon {
+  background: #fdeaea;
+  color: #b93232;
+}
+
+.toast.error .toast-content strong {
+  color: #a82e2e;
+}
+
+/* Informação */
+
+.toast.info {
+  border-color: #d8e3ec;
+  border-left-color: #527f9c;
+}
+
+.toast.info .toast-icon {
+  background: #e8f1f8;
+  color: #356a8b;
+}
+
+.toast.info .toast-content strong {
+  color: #2d5974;
+}
+
+/* Responsividade */
+
+@media (max-width: 600px) {
+  .toast {
+    top: 12px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+    padding: 14px;
+  }
+
+  .toast-content strong {
+    font-size: 13px;
+  }
+
+  .toast-content p {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    transition: none;
+  }
+}

@@ -3,6 +3,8 @@ import unittest
 from pathlib import Path
 
 from fastapi import HTTPException
+from fastapi.testclient import TestClient
+from app.main import app
 
 from app import database
 from app.main import get_assessments, patch_follow_up, post_animal, post_assessment
@@ -11,11 +13,13 @@ from app.schemas import AnimalCreate, AssessmentCreate, FollowUpUpdate
 
 class ApiTests(unittest.TestCase):
     def setUp(self):
+        self.original_db_path = database.DB_PATH
         self.temp = tempfile.TemporaryDirectory()
         database.DB_PATH = Path(self.temp.name) / "test.sqlite3"
         database.initialize()
 
     def tearDown(self):
+        database.DB_PATH = self.original_db_path
         self.temp.cleanup()
 
     def test_animal_assessment_history_and_follow_up(self):
@@ -42,6 +46,23 @@ class ApiTests(unittest.TestCase):
         with self.assertRaises(HTTPException) as ctx:
             post_assessment(AssessmentCreate(answers={"fever_state":"maybe"}))
         self.assertEqual(ctx.exception.status_code, 422)
+
+
+    def test_http_api_serves_home_questions_and_docs(self):
+        with TestClient(app) as client:
+            self.assertEqual(client.get("/").status_code, 200)
+            self.assertEqual(client.get("/api/questions").status_code, 200)
+            self.assertEqual(client.get("/docs").status_code, 200)
+
+    def test_http_api_rejects_negative_onset_hours(self):
+        with TestClient(app) as client:
+            response = client.post("/api/assessments", json={"answers": {"onset_hours": -5}})
+            self.assertEqual(response.status_code, 422)
+
+    def test_http_api_accepts_nonnegative_onset_hours(self):
+        with TestClient(app) as client:
+            response = client.post("/api/assessments", json={"answers": {"onset_hours": 3}})
+            self.assertEqual(response.status_code, 201)
 
 
 if __name__ == "__main__":

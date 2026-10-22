@@ -1,0 +1,71 @@
+[
+  {
+    "id": "alerta_respiratorio",
+    "answers": {
+      "respiratory_distress": true
+    },
+    "expected_priority": "immediate",
+    "expected_rules": [
+      "R-RESP-001"
+    ]
+  },
+  {
+    "id": "animal_caido",
+    "answers": {
+      "unable_to_rise": true
+    },
+    "expected_priority": "immediate",
+    "expected_rules": [
+      "R-RECUMBENT-001"
+    ]
+  },
+  {
+    "id": "distensao_subita",
+    "answers": {
+      "sudden_left_abdominal_distension": true
+    },
+    "expected_priority": "immediate",
+    "expected_rules": [
+      "R-BLOAT-001"
+    ]
+  },
+  {
+    "id": "alteracao_leite",
+    "answers": {
+      "abnormal_milk": true
+    },
+    "expected_priority": "veterinary_assessment",
+    "expected_rules": [
+      "R-UDDER-001"
+    ]
+  },
+  {
+    "id": "mamario_e_febre",
+    "answers": {
+      "abnormal_milk": true,
+      "fever_state": "fever_present"
+    },
+    "expected_priority": "immediate",
+    "expected_rules": [
+      "R-UDDER-SYSTEMIC-001"
+    ]
+  },
+  {
+    "id": "informacao_desconhecida",
+    "answers": {},
+    "expected_priority": "none",
+    "expected_rules": []
+  },
+  {
+    "id": "sem_alerta_coberto",
+    "answers": {
+      "respiratory_distress": false,
+      "unable_to_rise": false,
+      "sudden_left_abdominal_distension": false,
+      "abnormal_milk": false,
+      "udder_inflammation": false
+    },
+    "expected_priority": "none",
+    "expected_rules": []
+  }
+]

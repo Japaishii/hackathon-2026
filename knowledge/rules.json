@@ -1,26 +1,238 @@
 {
-  "version": "1.1.0",
-  "priority_order": ["immediate", "veterinary_assessment", "none"],
-  "fact_ids": ["respiratory_distress", "unable_to_rise", "sudden_left_abdominal_distension", "abnormal_milk", "udder_inflammation", "fever_state", "reduced_appetite", "milk_drop", "onset_hours"],
+  "version": "1.3.1-demo",
+  "priority_order": [
+    "immediate",
+    "veterinary_assessment",
+    "none"
+  ],
+  "fact_ids": [
+    "respiratory_distress",
+    "unable_to_rise",
+    "sudden_left_abdominal_distension",
+    "abnormal_milk",
+    "udder_inflammation",
+    "fever_state",
+    "reduced_appetite",
+    "milk_drop",
+    "onset_hours"
+  ],
   "priority_labels": {
     "immediate": "Sinal de emergência/alerta crítico: contate um médico-veterinário imediatamente.",
     "veterinary_assessment": "Sinais clínicos relevantes: justificam avaliação/orientação veterinária.",
     "none": "Nenhuma regra de alerta foi acionada."
   },
-  "required_for_clear_result": ["respiratory_distress", "unable_to_rise", "sudden_left_abdominal_distension", "abnormal_milk", "udder_inflammation"],
-  "disclaimer": "LeiteCheck oferece apoio inicial à triagem de anamnese. Não estabelece diagnóstico definitivo, não prescreve medicamentos e não substitui a avaliação presencial do médico-veterinário.",
-  "default_guidance": ["Em caso de dúvida, piora do quadro ou incerteza na medição, contate um médico-veterinário."],
+  "required_for_clear_result": [
+    "respiratory_distress",
+    "unable_to_rise",
+    "sudden_left_abdominal_distension",
+    "abnormal_milk",
+    "udder_inflammation"
+  ],
+  "disclaimer": "BoviHealth oferece apoio inicial à triagem de anamnese. Não estabelece diagnóstico definitivo, não prescreve medicamentos e não substitui a avaliação presencial do médico-veterinário.",
+  "default_guidance": [
+    "Em caso de dúvida, piora do quadro ou incerteza na medição, contate um médico-veterinário."
+  ],
   "sources": [
-    {"id":"merck_bloat","title":"Bloat in Ruminants","publisher":"Merck Veterinary Manual","url":"https://www.merckvetmanual.com/digestive-system/diseases-of-the-ruminant-forestomach/bloat-in-ruminants","accessed":"2026-10-20","supports":"A distensão abdominal súbita no flanco esquerdo é um sinal característico de timpanismo ruminal, afecção de emergência com risco de asfixia e colapso circulatório."},
-    {"id":"merck_recumbency","title":"Bovine Secondary Recumbency","publisher":"Merck Veterinary Manual","url":"https://www.merckvetmanual.com/musculoskeletal-system/bovine-secondary-recumbency/bovine-secondary-recumbency","accessed":"2026-10-20","supports":"Incapacidade de se levantar possui etiologia multifatorial (metabólica, infecciosa ou traumática) e gera lesão muscular/nervosa secundária rápida."},
-    {"id":"merck_mastitis","title":"Mastitis in Cattle","publisher":"Merck Veterinary Manual","url":"https://www.merckvetmanual.com/reproductive-system/mastitis-in-large-animals/mastitis-in-cattle","accessed":"2026-10-20","supports":"Mastites com sinais locais (leite/úbere) associadas a manifestações sistêmicas (febre, anorexia) indicam comprometimento agudo com indicação de atendimento veterinário imediato."}
+    {
+      "id": "merck_bloat",
+      "title": "Bloat in Ruminants",
+      "publisher": "Merck Veterinary Manual",
+      "url": "https://www.merckvetmanual.com/digestive-system/diseases-of-the-ruminant-forestomach/bloat-in-ruminants",
+      "accessed": "2026-10-20",
+      "supports": "A distensão abdominal súbita no flanco esquerdo é um sinal característico de timpanismo ruminal, afecção de emergência com risco de asfixia e colapso circulatório."
+    },
+    {
+      "id": "merck_recumbency",
+      "title": "Bovine Secondary Recumbency",
+      "publisher": "Merck Veterinary Manual",
+      "url": "https://www.merckvetmanual.com/musculoskeletal-system/bovine-secondary-recumbency/bovine-secondary-recumbency",
+      "accessed": "2026-10-20",
+      "supports": "Incapacidade de se levantar possui etiologia multifatorial (metabólica, infecciosa ou traumática) e gera lesão muscular/nervosa secundária rápida."
+    },
+    {
+      "id": "merck_mastitis",
+      "title": "Mastitis in Cattle",
+      "publisher": "Merck Veterinary Manual",
+      "url": "https://www.merckvetmanual.com/reproductive-system/mastitis-in-large-animals/mastitis-in-cattle",
+      "accessed": "2026-10-20",
+      "supports": "Mastites com sinais locais (leite/úbere) associadas a manifestações sistêmicas (febre, anorexia) indicam comprometimento agudo com indicação de atendimento veterinário imediato."
+    },
+    {
+      "id": "embrapa_mastitis_2012",
+      "title": "Diagnóstico de casos clínicos de mastite",
+      "publisher": "Embrapa Gado de Leite — Comunicado Técnico 67",
+      "authors": "Mendonça, L. C.; Guimarães, A. S.; Brito, M. A. V. P. e.",
+      "year": 2012,
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/930366",
+      "accessed": "2026-10-22",
+      "supports": "Inspeção visual do úbere e avaliação do aspecto físico do leite; sinais citados incluem inchaço, vermelhidão, aumento de temperatura, dor, grumos e coágulos de sangue."
+    },
+    {
+      "id": "embrapa_milk_fever_2006",
+      "title": "Como prevenir a febre do leite em vacas leiteiras",
+      "publisher": "Embrapa Gado de Leite — Comunicado Técnico 49",
+      "authors": "Oliveira, V. M. de; Aroeira, L. J. M.; Silva, M. R.",
+      "year": 2006,
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/595888",
+      "accessed": "2026-10-22",
+      "supports": "Referência temática para prevenção da hipocalcemia puerperal; não usada ainda para regra diagnóstica específica nesta versão."
+    },
+    {
+      "id": "embrapa_timpanismo_2022",
+      "title": "Material técnico sobre timpanismo bovino",
+      "publisher": "Embrapa / Infoteca-e (verificar autoria e aplicabilidade antes do uso clínico)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1151712/1/Boletim-LN-03.09.22.pdf",
+      "accessed": "2026-10-22",
+      "supports": "Referência temática adicional para estudo de timpanismo; a correspondência exata entre critérios da regra e a publicação requer revisão técnica."
+    }
   ],
   "rules": [
-    {"id":"R-RESP-001","label":"Dificuldade respiratória evidente","when":{"all":[{"fact":"respiratory_distress","is":true}]},"conclusion":"urgent_contact","conclusion_label":"Dificuldade respiratória grave observada","priority":"immediate","because":"Dificuldade respiratória indica possível comprometimento grave com risco à vida.","source_ids":["merck_bloat"],"guidance":"Contate um médico-veterinário imediatamente. Mantenha o animal em local arejado e evite estresse."},
-    {"id":"R-RECUMBENT-001","label":"Animal caído sem conseguir levantar","when":{"all":[{"fact":"unable_to_rise","is":true}]},"conclusion":"urgent_contact","conclusion_label":"Vaca em decúbito / incapacitada de se levantar","priority":"immediate","because":"A permanência em decúbito pode causar danos secundários e exige avaliação veterinária rápida.","source_ids":["merck_recumbency"],"guidance":"Contate um médico-veterinário imediatamente. Proporcione piso macio e limpo; não arraste o animal."},
-    {"id":"R-BLOAT-001","label":"Distensão abdominal súbita (suspeita de timpanismo)","when":{"all":[{"fact":"sudden_left_abdominal_distension","is":true}]},"conclusion":"urgent_contact","conclusion_label":"Aumento súbito de volume no flanco esquerdo","priority":"immediate","because":"Distensão súbita do flanco esquerdo pode ser compatível com timpanismo ruminal e evoluir rapidamente; a triagem não confirma a causa.","source_ids":["merck_bloat"],"guidance":"Contate um médico-veterinário em caráter de emergência. Mantenha o animal em pé, se possível."},
-    {"id":"R-UDDER-001","label":"Alteração mamária localizada","when":{"any":[{"fact":"abnormal_milk","is":true},{"fact":"udder_inflammation","is":true}]},"conclusion":"veterinary_assessment","conclusion_label":"Alteração em úbere ou leite identificada","priority":"veterinary_assessment","because":"Sinais locais na glândula mamária requerem avaliação e diagnóstico diferencial.","source_ids":["merck_mastitis"],"guidance":"Solicite orientação veterinária para avaliação do úbere e do leite."},
-    {"id":"R-UDDER-SYSTEMIC-001","label":"Alteração mamária com comprometimento sistêmico","when":{"any":[{"fact":"abnormal_milk","is":true},{"fact":"udder_inflammation","is":true}],"any_systemic":[{"fact":"fever_state","is":"fever_present"},{"fact":"reduced_appetite","is":true}]},"conclusion":"urgent_contact","conclusion_label":"Afecção mamária associada a sinal de alteração sistêmica","priority":"immediate","because":"Febre ou inapetência associada a alterações no úbere/leite pode indicar comprometimento sistêmico e requer avaliação veterinária imediata.","source_ids":["merck_mastitis"],"guidance":"Contate o médico-veterinário imediatamente para avaliação."},
-    {"id":"R-METABOLIC-SYSTEMIC-001","label":"Inapetência com queda abrupta de produção","when":{"all":[{"fact":"reduced_appetite","is":true},{"fact":"milk_drop","is":true}]},"conclusion":"veterinary_assessment","conclusion_label":"Associação de inapetência e queda de produção","priority":"veterinary_assessment","because":"A associação de queda de apetite e de produção merece investigação veterinária; não identifica uma causa específica.","source_ids":["merck_mastitis"],"guidance":"Solicite avaliação veterinária e informe quando os sinais começaram e como a produção mudou."}
+    {
+      "id": "R-RESP-001",
+      "label": "Dificuldade respiratória evidente",
+      "when": {
+        "all": [
+          {
+            "fact": "respiratory_distress",
+            "is": true
+          }
+        ]
+      },
+      "conclusion": "urgent_contact",
+      "conclusion_label": "Dificuldade respiratória grave observada",
+      "priority": "immediate",
+      "because": "Dificuldade respiratória evidente é um sinal de alerta que exige avaliação imediata; a referência citada discute esse sinal no contexto de timpanismo, não todas as suas possíveis causas.",
+      "source_ids": [
+        "merck_bloat"
+      ],
+      "guidance": "Contate um médico-veterinário imediatamente. Mantenha o animal em local arejado e evite estresse.",
+      "evidence_limit": "Extrapolação de prioridade de triagem: requer revisão veterinária para uso clínico geral."
+    },
+    {
+      "id": "R-RECUMBENT-001",
+      "label": "Animal caído sem conseguir levantar",
+      "when": {
+        "all": [
+          {
+            "fact": "unable_to_rise",
+            "is": true
+          }
+        ]
+      },
+      "conclusion": "urgent_contact",
+      "conclusion_label": "Vaca em decúbito / incapacitada de se levantar",
+      "priority": "immediate",
+      "because": "A permanência em decúbito pode causar danos secundários e exige avaliação veterinária rápida.",
+      "source_ids": [
+        "merck_recumbency"
+      ],
+      "guidance": "Contate um médico-veterinário imediatamente. Proporcione piso macio e limpo; não arraste o animal."
+    },
+    {
+      "id": "R-BLOAT-001",
+      "label": "Distensão abdominal súbita (suspeita de timpanismo)",
+      "when": {
+        "all": [
+          {
+            "fact": "sudden_left_abdominal_distension",
+            "is": true
+          }
+        ]
+      },
+      "conclusion": "urgent_contact",
+      "conclusion_label": "Aumento súbito de volume no flanco esquerdo",
+      "priority": "immediate",
+      "because": "Distensão súbita do flanco esquerdo pode ser compatível com timpanismo ruminal e evoluir rapidamente; a triagem não confirma a causa.",
+      "source_ids": [
+        "merck_bloat",
+        "embrapa_timpanismo_2022"
+      ],
+      "guidance": "Contate um médico-veterinário em caráter de emergência. Mantenha o animal em pé, se possível.",
+      "evidence_limit": "Referência Embrapa temática, sem validação individual da condição e da prioridade; Merck é a referência principal."
+    },
+    {
+      "id": "R-UDDER-001",
+      "label": "Alteração mamária localizada",
+      "when": {
+        "any": [
+          {
+            "fact": "abnormal_milk",
+            "is": true
+          },
+          {
+            "fact": "udder_inflammation",
+            "is": true
+          }
+        ]
+      },
+      "conclusion": "veterinary_assessment",
+      "conclusion_label": "Alteração em úbere ou leite identificada",
+      "priority": "veterinary_assessment",
+      "because": "Sinais locais na glândula mamária requerem avaliação e diagnóstico diferencial.",
+      "source_ids": [
+        "embrapa_mastitis_2012",
+        "merck_mastitis"
+      ],
+      "guidance": "Solicite orientação veterinária para avaliação do úbere e do leite."
+    },
+    {
+      "id": "R-UDDER-SYSTEMIC-001",
+      "label": "Alteração mamária com comprometimento sistêmico",
+      "when": {
+        "any": [
+          {
+            "fact": "abnormal_milk",
+            "is": true
+          },
+          {
+            "fact": "udder_inflammation",
+            "is": true
+          }
+        ],
+        "any_systemic": [
+          {
+            "fact": "fever_state",
+            "is": "fever_present"
+          },
+          {
+            "fact": "reduced_appetite",
+            "is": true
+          }
+        ]
+      },
+      "conclusion": "urgent_contact",
+      "conclusion_label": "Afecção mamária associada a sinal de alteração sistêmica",
+      "priority": "immediate",
+      "because": "Febre ou inapetência associada a alterações no úbere/leite pode indicar comprometimento sistêmico e requer avaliação veterinária imediata.",
+      "source_ids": [
+        "embrapa_mastitis_2012",
+        "merck_mastitis"
+      ],
+      "guidance": "Contate o médico-veterinário imediatamente para avaliação."
+    },
+    {
+      "id": "R-METABOLIC-SYSTEMIC-001",
+      "label": "Inapetência com queda abrupta de produção",
+      "when": {
+        "all": [
+          {
+            "fact": "reduced_appetite",
+            "is": true
+          },
+          {
+            "fact": "milk_drop",
+            "is": true
+          }
+        ]
+      },
+      "conclusion": "veterinary_assessment",
+      "conclusion_label": "Associação de inapetência e queda de produção",
+      "priority": "veterinary_assessment",
+      "because": "A associação de queda de apetite e de produção merece investigação veterinária; não identifica uma causa específica. A referência atual não valida uma causa metabólica específica.",
+      "source_ids": [
+        "merck_mastitis"
+      ],
+      "guidance": "Solicite avaliação veterinária e informe quando os sinais começaram e como a produção mudou."
+    }
   ]
 }

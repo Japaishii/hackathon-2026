@@ -9,6 +9,8 @@ class AnimalCreate(BaseModel):
     breed: str | None = Field(default=None, max_length=80)
     age_months: int | None = Field(default=None, ge=0, le=600)
     days_in_milk: int | None = Field(default=None, ge=0, le=1500)
+    productive_state: str | None = Field(default=None, pattern="^(lactating|dry)$")
+    transition_stage: str | None = Field(default=None, pattern="^(outside|prepartum|postpartum|unknown)$")
     notes: str | None = Field(default=None, max_length=500)
 
 

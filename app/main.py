@@ -1,4 +1,5 @@
 from pathlib import Path
+from contextlib import asynccontextmanager
 import json
 
 from fastapi import FastAPI, HTTPException
@@ -16,13 +17,14 @@ RULES = load_knowledge_base(KNOWLEDGE / "rules.json")
 QUESTIONS = json.loads((KNOWLEDGE / "questions.json").read_text(encoding="utf-8"))
 question_by_id = {q["id"]: q for q in QUESTIONS["questions"]}
 
-app = FastAPI(title="LeiteCheck", version="1.1.0", description="Anamnese e triagem explicável com regras determinísticas locais.")
-app.mount("/static", StaticFiles(directory=ROOT / "static"), name="static")
-
-
-@app.on_event("startup")
-def startup() -> None:
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     database.initialize()
+    yield
+
+
+app = FastAPI(title="BoviHealth", version="1.1.1", description="Anamnese e triagem explicável com regras determinísticas locais.", lifespan=lifespan)
+app.mount("/static", StaticFiles(directory=ROOT / "static"), name="static")
 
 
 @app.get("/", response_class=HTMLResponse, include_in_schema=False)
@@ -47,6 +49,10 @@ def get_animals():
 
 @app.post("/api/animals", response_model=Animal, status_code=201)
 def post_animal(payload: AnimalCreate):
+    if payload.productive_state == "dry" and payload.days_in_milk is not None:
+        raise HTTPException(422, "Animal no período seco não deve ter dias em lactação ativos.")
+    if payload.transition_stage == "prepartum" and payload.productive_state == "lactating":
+        raise HTTPException(422, "Informe período seco para pré-parto neste cadastro simplificado.")
     try:
         return database.create_animal(payload.model_dump())
     except Exception as exc:
@@ -81,8 +87,13 @@ def post_assessment(payload: AssessmentCreate):
             raise HTTPException(422, f"A resposta para {key} deve ser sim, não ou desconhecido.")
         if value is not None and question["type"] == "enum" and value not in question.get("options", []):
             raise HTTPException(422, f"A resposta para {key} não corresponde a uma opção válida.")
-        if value is not None and question["type"] == "number" and (isinstance(value, bool) or not isinstance(value, (int, float))):
-            raise HTTPException(422, f"A resposta para {key} deve ser numérica ou desconhecida.")
+        if value is not None and question["type"] == "number":
+            if isinstance(value, bool) or not isinstance(value, (int, float)):
+                raise HTTPException(422, f"A resposta para {key} deve ser numérica ou desconhecida.")
+            if value < 0:
+                raise HTTPException(422, f"A resposta para {key} não pode ser negativa.")
+            if key == "onset_hours" and value > 8760:
+                raise HTTPException(422, "O tempo desde o início dos sinais deve ser de até 8760 horas.")
     result = infer(payload.answers, RULES).to_dict()
     return database.save_assessment(payload.animal_id, payload.answers, result)
 

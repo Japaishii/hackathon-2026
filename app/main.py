@@ -16,7 +16,7 @@ RULES = load_knowledge_base(KNOWLEDGE / "rules.json")
 QUESTIONS = json.loads((KNOWLEDGE / "questions.json").read_text(encoding="utf-8"))
 question_by_id = {q["id"]: q for q in QUESTIONS["questions"]}
 
-app = FastAPI(title="LeiteCheck", version="1.0.0", description="Anamnese e triagem explicável com regras determinísticas locais.")
+app = FastAPI(title="LeiteCheck", version="1.1.0", description="Anamnese e triagem explicável com regras determinísticas locais.")
 app.mount("/static", StaticFiles(directory=ROOT / "static"), name="static")
 
 
@@ -79,6 +79,8 @@ def post_assessment(payload: AssessmentCreate):
         question = question_by_id[key]
         if value is not None and question["type"] == "boolean" and not isinstance(value, bool):
             raise HTTPException(422, f"A resposta para {key} deve ser sim, não ou desconhecido.")
+        if value is not None and question["type"] == "enum" and value not in question.get("options", []):
+            raise HTTPException(422, f"A resposta para {key} não corresponde a uma opção válida.")
         if value is not None and question["type"] == "number" and (isinstance(value, bool) or not isinstance(value, (int, float))):
             raise HTTPException(422, f"A resposta para {key} deve ser numérica ou desconhecida.")
     result = infer(payload.answers, RULES).to_dict()

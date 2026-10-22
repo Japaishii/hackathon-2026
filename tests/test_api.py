@@ -33,6 +33,16 @@ class ApiTests(unittest.TestCase):
             post_assessment(AssessmentCreate(answers={"respiratory_distress":"yes"}))
         self.assertEqual(ctx.exception.status_code, 422)
 
+    def test_temperature_enum_accepts_not_measured(self):
+        assessment = post_assessment(AssessmentCreate(answers={"fever_state":"not_measured"}))
+        self.assertEqual(assessment["answers"]["fever_state"], "not_measured")
+        self.assertNotIn("fever_state", assessment["result"]["unknowns"])
+
+    def test_temperature_enum_rejects_undeclared_value(self):
+        with self.assertRaises(HTTPException) as ctx:
+            post_assessment(AssessmentCreate(answers={"fever_state":"maybe"}))
+        self.assertEqual(ctx.exception.status_code, 422)
+
 
 if __name__ == "__main__":
     unittest.main()

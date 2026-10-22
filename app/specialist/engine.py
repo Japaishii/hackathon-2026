@@ -70,9 +70,9 @@ def validate_knowledge_base(data: dict[str, Any]) -> None:
         if rule.get("priority") not in data.get("priority_order", []):
             raise KnowledgeBaseError(f"Prioridade inválida na regra {rid}.")
         clauses = rule.get("when", {})
-        if not any(key in clauses for key in ("all", "any", "equals")):
+        if not any(key in clauses for key in ("all", "any", "any_systemic", "equals")):
             raise KnowledgeBaseError(f"Regra {rid} sem condições suportadas.")
-        for clause in clauses.get("all", []) + clauses.get("any", []):
+        for clause in clauses.get("all", []) + clauses.get("any", []) + clauses.get("any_systemic", []):
             if clause.get("fact") not in question_ids:
                 raise KnowledgeBaseError(f"Fato desconhecido na regra {rid}: {clause.get('fact')}")
         for fact in clauses.get("equals", {}):
@@ -84,14 +84,17 @@ def _matches(rule: dict[str, Any], facts: dict[str, Any]) -> bool:
     when = rule["when"]
 
     def is_true(clause: dict[str, Any]) -> bool:
-        return facts.get(clause["fact"]) is clause.get("is", True)
+        return facts.get(clause["fact"]) == clause.get("is", True)
 
     required = when.get("all", [])
     alternatives = when.get("any", [])
+    systemic_alternatives = when.get("any_systemic", [])
     equalities = when.get("equals", {})
     if required and not all(is_true(clause) for clause in required):
         return False
     if alternatives and not any(is_true(clause) for clause in alternatives):
+        return False
+    if systemic_alternatives and not any(is_true(clause) for clause in systemic_alternatives):
         return False
     if any(facts.get(key) != value for key, value in equalities.items()):
         return False

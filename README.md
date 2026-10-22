@@ -1,4 +1,4 @@
-# LeiteCheck
+# BoviHealth
 
 Prova de conceito local para coleta guiada de sinais e histórico de bovinos leiteiros em lactação, com triagem determinística e explicável. A LLM não participa das decisões durante a execução.
 
@@ -61,3 +61,18 @@ Casos de demonstração: (a) todas as respostas prioritárias negativas, (b) dif
 
 O evento exige agente de codificação com IA no desenvolvimento, ferramenta/código open source, uma aplicação especialista com base explícita e motor de inferência, demonstração funcional, documentação do processo/arquitetura/regras, apresentação e execução integral em localhost. A escolha de FastAPI, SQLite, pytest e esta divisão de módulos é decisão do projeto, não requisito imposto pelo regulamento.
 # hackathon-2026
+
+## Documentação de entrega
+
+- `docs/architecture.md`: arquitetura e semântica do motor.
+- `docs/development-process.md`: processo de desenvolvimento e verificações.
+- `docs/regras.md`: catálogo de regras, fontes, justificativas e lacunas conhecidas.
+- `tests/cases.json`: casos sintéticos de regressão, com resultados esperados.
+
+
+## Atualização visual BoviHealth
+Interface sem sidebar, histórico de triagens em cartões e contexto produtivo opcional no cadastro de vacas adultas. Veja `docs/FONTES_E_LIMITES.md`.
+
+## Preparação para demonstração (22/10/2026)
+
+Execute `python preflight.py` para validar arquivos, base de regras e testes automatizados. Consulte `docs/PRONTIDAO_DEMO.md` para o ensaio em localhost, casos sintéticos, roteiro de apresentação e limites de validação. A versão de demonstração não inclui banco de dados com registros de exemplo.

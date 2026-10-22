@@ -66,6 +66,19 @@ def get_assessments(animal_id: int | None = None):
     return database.list_assessments(animal_id)
 
 
+@app.get("/api/assessments/page")
+def get_assessments_page(page: int = 1, page_size: int = 5, animal_id: int | None = None):
+    if page < 1 or not 1 <= page_size <= 50:
+        raise HTTPException(422, "Página ou tamanho de página inválido.")
+    return database.list_assessments_page(page, page_size, animal_id)
+
+
+@app.delete("/api/assessments/{assessment_id}", status_code=204)
+def delete_assessment(assessment_id: int):
+    if not database.delete_assessment(assessment_id):
+        raise HTTPException(404, "Avaliação não encontrada.")
+
+
 @app.get("/api/assessments/{assessment_id}", response_model=Assessment)
 def get_assessment(assessment_id: int):
     record = database.get_assessment(assessment_id)

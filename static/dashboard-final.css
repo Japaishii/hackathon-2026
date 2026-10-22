@@ -1,22 +1,1161 @@
-/* BoviHealth — interface aprovada: sem sidebar, dashboard com histórico em lista */
-html{scroll-behavior:smooth}body{background:#faf9f5;color:#152e22;font-family:Arial,Helvetica,sans-serif}.app-shell{max-width:none;width:100%;display:block}.topbar{height:90px;padding:0 max(4vw,22px);border:0;background:#fff;display:flex;justify-content:space-between}.brand-mark{background:#24543a;border-radius:50%;font-family:Georgia,serif}.brand strong{font-family:Georgia,serif;font-size:1.65rem;color:#183e2c}.brand small{font-size:.65rem}.topbar-right{display:flex;align-items:center}.header-links{display:flex;align-items:center;gap:24px}.header-links a{text-decoration:none;color:#355747;font-weight:600;font-size:.85rem}.header-links a:hover{color:#147448}main#triage{width:100%;max-width:1480px;margin:auto;padding:20px 4vw 70px}.dashboard-home{display:block}.welcome{height:355px;min-height:355px;margin:0 0 20px;position:relative;overflow:hidden;border:0;border-radius:22px;padding:48px 6%;background:linear-gradient(100deg,#f1f3e8 0%,#e5e9d7 65%,#b8c8a1 100%);box-shadow:none}.welcome::before{display:none}.welcome-copy{max-width:62%;position:relative;z-index:2}.welcome .eyebrow{font-size:.75rem;letter-spacing:.16em;color:#3e5b45}.welcome h1{font-family:Georgia,serif;font-size:clamp(2rem,3.3vw,3.4rem);line-height:1.1;letter-spacing:-.035em;color:#153b2b;margin:12px 0}.welcome h1 em{font-weight:400;color:#5c7852}.welcome-text{max-width:560px;color:#334a3b;font-size:1rem;line-height:1.55;margin:0 0 22px}.welcome-image{display:block;opacity:1;position:absolute;inset:0 0 0 auto;width:48%;background-image:linear-gradient(90deg,#e9eddc 0%,#e9eddc00 30%),url('/static/hero-cow.jpg');background-size:cover;background-position:center;border-radius:0}.hero-cta{display:inline-flex;align-items:center;gap:24px;background:#254c35;color:#fff;text-decoration:none;padding:14px 25px;border-radius:15px;font-weight:700}.dashboard-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:0 0 20px}.dash-tile{min-height:158px;background:#fff;border:1px solid #eeefe9;border-radius:19px;padding:25px 20px;display:flex;align-items:flex-start;gap:17px;text-decoration:none;color:#172f23;box-shadow:0 4px 16px #233c2b07}.dash-tile:hover{border-color:#bdd0bd;transform:translateY(-2px)}.tile-icon{width:65px;height:65px;border-radius:50%;background:#eaf0e4;color:#3d7651;display:grid;place-items:center;font-size:2rem;flex-shrink:0}.tile-icon.tan{background:#f7eee4;color:#a78057}.dash-tile strong{display:block;font-size:1.25rem;margin:6px 0 8px}.dash-tile small{display:block;font-size:.85rem;line-height:1.5;color:#5e675f}.tile-arrow{margin-left:auto;font-size:1.7rem;color:#69786d}.dashboard-bottom{display:grid;grid-template-columns:1fr 1fr;gap:20px}.dashboard-bottom>.card{margin:0;padding:23px 25px;border:1px solid #ecede8;border-radius:20px;box-shadow:0 4px 18px #273d2a08}.dashboard-section-title{display:flex;align-items:center;justify-content:space-between;gap:10px}.dashboard-section-title h2{font-size:1.2rem;color:#182e23}.dashboard-section-title a{font-size:.8rem;text-decoration:none;color:#24533a;font-weight:700}.dashboard-helper{font-size:.75rem;color:#788479;margin:8px 0 12px}.history-list{list-style:none;padding:0;margin:0}.history-list li.history-row{display:flex;align-items:center;gap:13px;padding:12px 0!important;border-top:1px solid #eef0eb}.history-cow,.knowledge-icon{width:42px;height:42px;border-radius:50%;background:#f0f2ed;display:grid;place-items:center;color:#56785d;font-size:1.25rem;flex-shrink:0}.history-item-main{flex:1;min-width:0}.history-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.history-open{background:none;border:0;padding:0;color:#1a2e23;font-weight:800;cursor:pointer;font-size:.85rem}.history-badge{font-size:.65rem;padding:5px 10px;border-radius:30px;background:#e5efe0;color:#315d3a}.history-badge.immediate{background:#fbe6e4;color:#a22d29}.history-badge.veterinary_assessment{background:#fff1c9;color:#8a6316}.history-badge.insufficient{background:#e8eaea;color:#606e69}.history-animal{font-size:.76rem;color:#657268;margin-top:4px}.history-item-date{font-size:.72rem;line-height:1.65;color:#788179;text-align:right}.history-chevron{font-size:1.5rem;color:#77847a;padding:0 5px}.knowledge-preview{margin-top:12px}.knowledge-row{display:flex;align-items:center;gap:13px;padding:13px 0;border-top:1px solid #eef0eb;color:#26392b;text-decoration:none}.knowledge-row>span:nth-child(2){flex:1;min-width:0}.knowledge-row strong{display:block;font-size:.84rem}.knowledge-row small{display:block;font-size:.73rem;color:#7b847d;margin-top:5px}.knowledge-arrow{font-size:1.5rem;color:#7b847d}.work-area{margin-top:45px;border-top:1px solid #e5e9e1;padding-top:34px}.work-heading{margin-bottom:20px}.work-heading h2{font-family:Georgia,serif;font-size:2rem;color:#193e2d}.work-heading p{color:#5d7263}.layout{grid-template-columns:minmax(0,1.7fr) minmax(270px,1fr);gap:20px}.card{background:#fff}.side-column{position:static}.safety-note{background:#fff8ed;border:1px solid #f4e3c8}.history-card{display:none}footer{margin:0 auto;max-width:1480px;padding:20px 4vw}@media(max-width:950px){.welcome-copy{max-width:72%}.welcome-image{width:45%;opacity:.7}.header-links{gap:12px}.dashboard-cards{gap:10px}.dash-tile{padding:16px 12px;gap:10px}.tile-icon{width:44px;height:44px;font-size:1.4rem}.dashboard-bottom{grid-template-columns:1fr}.layout{grid-template-columns:1fr}}@media(max-width:650px){.topbar{height:auto;min-height:76px;flex-wrap:wrap;gap:12px;padding:14px 18px}.brand strong{font-size:1.35rem}.header-links{flex-wrap:wrap;gap:12px}.header-links a{font-size:.72rem}main#triage{padding:14px 14px 45px}.welcome{height:auto;min-height:355px;padding:25px 22px}.welcome-copy{max-width:100%}.welcome h1{font-size:2rem}.welcome-text{max-width:90%;font-size:.85rem}.welcome-image{width:75%;opacity:.19}.dashboard-cards{grid-template-columns:1fr}.dash-tile{min-height:110px}.dashboard-bottom>.card{padding:18px 14px}.history-item-date{font-size:.62rem}.history-row{gap:8px!important}.history-cow{width:34px;height:34px}.work-area{margin-top:26px}}
 
-/* Confirmação da triagem e modal de acompanhamento */
-.result-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.result-card.hidden{display:none!important}
-.follow-up-dialog{border:0;border-radius:20px;max-width:min(92vw,540px);width:100%;padding:0;background:#fff;color:#183629;box-shadow:0 24px 90px #14281c44}
-.follow-up-dialog::backdrop{background:#10271c99;backdrop-filter:blur(3px)}
-.follow-up-dialog-content{padding:28px;display:grid;gap:14px}
-.follow-up-dialog-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-.follow-up-dialog-heading h2{font-size:1.4rem;margin:4px 0 0;color:#183629}
-.follow-up-dialog label{font-weight:700;font-size:.88rem}
-.follow-up-dialog textarea{box-sizing:border-box;width:100%;min-height:130px;padding:12px;border:1px solid #bdcdbf;border-radius:12px;font:inherit;resize:vertical;color:#173528;background:#fff}
-.follow-up-dialog textarea:focus{outline:2px solid #377b56;outline-offset:2px}
-.modal-close{border:0;background:#edf2eb;color:#284f37;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:1.5rem}
-.modal-actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
-.modal-error{color:#a52a27;margin:0;font-size:.85rem}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-@media(max-width:650px){.follow-up-dialog-content{padding:20px}.modal-actions>.button{flex:1}}
+/* =========================================================
+   BOVIHEALTH — DASHBOARD FINAL
+   Interface sem sidebar, com histórico de triagens
+   ========================================================= */
 
-/* Evidência e ressalvas exibidas junto à regra */
-.evidence-limit{font-size:.78rem;line-height:1.5;color:#74512a;background:#fff7e9;padding:9px 11px;border-radius:9px;margin:8px 0 0}
+/* ---------------------------------------------------------
+   1. ESTILOS GERAIS
+   --------------------------------------------------------- */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #faf9f5;
+  color: #152e22;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app-shell {
+  max-width: none;
+  width: 100%;
+  display: block;
+}
+
+/* ---------------------------------------------------------
+   2. CABEÇALHO
+   --------------------------------------------------------- */
+
+.topbar {
+  height: 90px;
+  padding: 0 max(4vw, 22px);
+  border: 0;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-mark {
+  background: #24543a;
+  border-radius: 50%;
+  font-family: Georgia, serif;
+}
+
+.brand strong {
+  font-family: Georgia, serif;
+  font-size: 1.65rem;
+  color: #183e2c;
+}
+
+.brand small {
+  font-size: 0.65rem;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header-links a {
+  text-decoration: none;
+  color: #355747;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.header-links a:hover {
+  color: #147448;
+}
+
+/* ---------------------------------------------------------
+   3. CONTEÚDO PRINCIPAL
+   --------------------------------------------------------- */
+
+main#triage {
+  width: 100%;
+  max-width: 1480px;
+  margin: auto;
+  padding: 20px 4vw 70px;
+}
+
+.dashboard-home {
+  display: block;
+}
+
+/* ---------------------------------------------------------
+   4. HERO / BOAS-VINDAS
+   --------------------------------------------------------- */
+
+.welcome {
+  height: 355px;
+  min-height: 355px;
+  margin: 0 0 20px;
+  position: relative;
+  overflow: hidden;
+  border: 0;
+  border-radius: 22px;
+  padding: 48px 6%;
+  background: linear-gradient(
+    100deg,
+    #f1f3e8 0%,
+    #e5e9d7 65%,
+    #b8c8a1 100%
+  );
+  box-shadow: none;
+}
+
+.welcome::before {
+  display: none;
+}
+
+.welcome-copy {
+  max-width: 62%;
+  position: relative;
+  z-index: 2;
+}
+
+.welcome .eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  color: #3e5b45;
+}
+
+.welcome h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(2rem, 3.3vw, 3.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  color: #153b2b;
+  margin: 12px 0;
+}
+
+.welcome h1 em {
+  font-weight: 400;
+  color: #5c7852;
+}
+
+.welcome-text {
+  max-width: 560px;
+  color: #334a3b;
+  font-size: 1rem;
+  line-height: 1.55;
+  margin: 0 0 22px;
+}
+
+.welcome-image {
+  display: block;
+  opacity: 1;
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 48%;
+  background-image:
+    linear-gradient(
+      90deg,
+      #e9eddc 0%,
+      #e9eddc00 30%
+    ),
+    url("/static/hero-cow.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 0;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  background: #254c35;
+  color: #fff;
+  text-decoration: none;
+  padding: 14px 25px;
+  border-radius: 15px;
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------------
+   5. CARDS DO DASHBOARD
+   --------------------------------------------------------- */
+
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin: 0 0 20px;
+}
+
+.dash-tile {
+  min-height: 158px;
+  background: #fff;
+  border: 1px solid #eeefe9;
+  border-radius: 19px;
+  padding: 25px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 17px;
+  text-decoration: none;
+  color: #172f23;
+  box-shadow: 0 4px 16px #233c2b07;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.dash-tile:hover {
+  border-color: #bdd0bd;
+  transform: translateY(-2px);
+}
+
+.tile-icon {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: #eaf0e4;
+  color: #3d7651;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.tile-icon.tan {
+  background: #f7eee4;
+  color: #a78057;
+}
+
+.dash-tile strong {
+  display: block;
+  font-size: 1.25rem;
+  margin: 6px 0 8px;
+}
+
+.dash-tile small {
+  display: block;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #5e675f;
+}
+
+.tile-arrow {
+  margin-left: auto;
+  font-size: 1.7rem;
+  color: #69786d;
+}
+
+/* ---------------------------------------------------------
+   6. PAINÉIS INFERIORES
+   --------------------------------------------------------- */
+
+.dashboard-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.dashboard-bottom > .card {
+  margin: 0;
+  padding: 23px 25px;
+  border: 1px solid #ecede8;
+  border-radius: 20px;
+  box-shadow: 0 4px 18px #273d2a08;
+}
+
+.dashboard-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.dashboard-section-title h2 {
+  font-size: 1.2rem;
+  color: #182e23;
+}
+
+.dashboard-section-title a {
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: #24533a;
+  font-weight: 700;
+}
+
+.dashboard-helper {
+  font-size: 0.75rem;
+  color: #788479;
+  margin: 8px 0 12px;
+}
+
+/* ---------------------------------------------------------
+   7. HISTÓRICO DE TRIAGENS
+   --------------------------------------------------------- */
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.history-list li.history-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 12px 0 !important;
+  border-top: 1px solid #eef0eb;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.history-list li.history-row:hover {
+  background: #f4f7f1;
+}
+
+.history-cow,
+.knowledge-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #f0f2ed;
+  display: grid;
+  place-items: center;
+  color: #56785d;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.history-item-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.history-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.history-number {
+  color: #1a2e23;
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.history-badge {
+  font-size: 0.65rem;
+  padding: 5px 10px;
+  border-radius: 30px;
+  background: #e5efe0;
+  color: #315d3a;
+}
+
+.history-badge.immediate {
+  background: #fbe6e4;
+  color: #a22d29;
+}
+
+.history-badge.veterinary_assessment {
+  background: #fff1c9;
+  color: #8a6316;
+}
+
+.history-badge.insufficient {
+  background: #e8eaea;
+  color: #606e69;
+}
+
+.history-animal {
+  font-size: 0.76rem;
+  color: #657268;
+  margin-top: 4px;
+}
+
+.history-item-date {
+  font-size: 0.72rem;
+  line-height: 1.65;
+  color: #788179;
+  text-align: right;
+}
+
+.history-chevron {
+  font-size: 1.5rem;
+  color: #77847a;
+  padding: 0 5px;
+  pointer-events: none;
+}
+
+/* Botão transparente sobre a linha inteira */
+
+.history-row-open {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.history-row-open:focus-visible {
+  outline: 2px solid #477b58;
+  outline-offset: 2px;
+}
+
+/* Exclusão independente da abertura */
+
+.history-delete {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  border: 0;
+  background: transparent;
+  color: #a65b59;
+  cursor: pointer;
+  padding: 9px;
+  border-radius: 8px;
+  font-size: 17px;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.history-delete:hover,
+.history-delete:focus-visible {
+  background: #fce9e7;
+  color: #9e2525;
+}
+
+/* ---------------------------------------------------------
+   8. PAGINAÇÃO
+   --------------------------------------------------------- */
+
+.history-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 16px 0 0;
+  color: #66746c;
+  font-size: 13px;
+}
+
+.history-page-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.history-page-controls button {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #dbe2da;
+  border-radius: 9px;
+  background: #fff;
+  color: #244b38;
+  cursor: pointer;
+  font-size: 21px;
+}
+
+.history-page-controls button:hover:not(:disabled) {
+  background: #edf3eb;
+}
+
+.history-page-controls button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ---------------------------------------------------------
+   9. PRÉVIA DA BASE DE CONHECIMENTO
+   --------------------------------------------------------- */
+
+.knowledge-preview {
+  margin-top: 12px;
+}
+
+.knowledge-row {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 0;
+  border-top: 1px solid #eef0eb;
+  color: #26392b;
+  text-decoration: none;
+}
+
+.knowledge-row > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+}
+
+.knowledge-row strong {
+  display: block;
+  font-size: 0.84rem;
+}
+
+.knowledge-row small {
+  display: block;
+  font-size: 0.73rem;
+  color: #7b847d;
+  margin-top: 5px;
+}
+
+.knowledge-arrow {
+  font-size: 1.5rem;
+  color: #7b847d;
+}
+
+/* ---------------------------------------------------------
+   10. ÁREA DE TRABALHO E TRIAGEM
+   --------------------------------------------------------- */
+
+.work-area {
+  margin-top: 45px;
+  border-top: 1px solid #e5e9e1;
+  padding-top: 34px;
+}
+
+.work-heading {
+  margin-bottom: 20px;
+}
+
+.work-heading h2 {
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  color: #193e2d;
+}
+
+.work-heading p {
+  color: #5d7263;
+}
+
+.layout {
+  grid-template-columns:
+    minmax(0, 1.7fr)
+    minmax(270px, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: #fff;
+}
+
+.side-column {
+  position: static;
+}
+
+.safety-note {
+  background: #fff8ed;
+  border: 1px solid #f4e3c8;
+}
+
+.history-card {
+  display: none;
+}
+
+/* ---------------------------------------------------------
+   11. RESULTADOS E AÇÕES
+   --------------------------------------------------------- */
+
+.result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.result-card.hidden {
+  display: none !important;
+}
+
+/* ---------------------------------------------------------
+   12. MODAL DE ACOMPANHAMENTO
+   --------------------------------------------------------- */
+
+.follow-up-dialog {
+  border: 0;
+  border-radius: 20px;
+  max-width: min(92vw, 540px);
+  width: 100%;
+  padding: 0;
+  background: #fff;
+  color: #183629;
+  box-shadow: 0 24px 90px #14281c44;
+}
+
+.follow-up-dialog::backdrop {
+  background: #10271c99;
+  backdrop-filter: blur(3px);
+}
+
+.follow-up-dialog-content {
+  padding: 28px;
+  display: grid;
+  gap: 14px;
+}
+
+.follow-up-dialog-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.follow-up-dialog-heading h2 {
+  font-size: 1.4rem;
+  margin: 4px 0 0;
+  color: #183629;
+}
+
+.follow-up-dialog label {
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+.follow-up-dialog textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 130px;
+  padding: 12px;
+  border: 1px solid #bdcdbf;
+  border-radius: 12px;
+  font: inherit;
+  resize: vertical;
+  color: #173528;
+  background: #fff;
+}
+
+.follow-up-dialog textarea:focus {
+  outline: 2px solid #377b56;
+  outline-offset: 2px;
+}
+
+.modal-close {
+  border: 0;
+  background: #edf2eb;
+  color: #284f37;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.modal-error {
+  color: #a52a27;
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+/* Botão de confirmação da exclusão */
+
+.delete-confirm-button {
+  background: #a73535 !important;
+  color: #fff !important;
+}
+
+.delete-confirm-button:hover {
+  background: #8f2929 !important;
+}
+
+.delete-confirm-button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+/* ---------------------------------------------------------
+   13. EVIDÊNCIAS E ACESSIBILIDADE
+   --------------------------------------------------------- */
+
+.evidence-limit {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: #74512a;
+  background: #fff7e9;
+  padding: 9px 11px;
+  border-radius: 9px;
+  margin: 8px 0 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------------------------------------------------------
+   14. RODAPÉ
+   --------------------------------------------------------- */
+
+footer {
+  margin: 0 auto;
+  max-width: 1480px;
+  padding: 20px 4vw;
+}
+
+/* ---------------------------------------------------------
+   15. RESPONSIVIDADE — TABLETS
+   --------------------------------------------------------- */
+
+@media (max-width: 950px) {
+  .welcome-copy {
+    max-width: 72%;
+  }
+
+  .welcome-image {
+    width: 45%;
+    opacity: 0.7;
+  }
+
+  .header-links {
+    gap: 12px;
+  }
+
+  .dashboard-cards {
+    gap: 10px;
+  }
+
+  .dash-tile {
+    padding: 16px 12px;
+    gap: 10px;
+  }
+
+  .tile-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.4rem;
+  }
+
+  .dashboard-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------------------------------------------------
+   16. RESPONSIVIDADE — CELULARES
+   --------------------------------------------------------- */
+
+@media (max-width: 650px) {
+  .topbar {
+    height: auto;
+    min-height: 76px;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 14px 18px;
+  }
+
+  .brand strong {
+    font-size: 1.35rem;
+  }
+
+  .header-links {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .header-links a {
+    font-size: 0.72rem;
+  }
+
+  main#triage {
+    padding: 14px 14px 45px;
+  }
+
+  .welcome {
+    height: auto;
+    min-height: 355px;
+    padding: 25px 22px;
+  }
+
+  .welcome-copy {
+    max-width: 100%;
+  }
+
+  .welcome h1 {
+    font-size: 2rem;
+  }
+
+  .welcome-text {
+    max-width: 90%;
+    font-size: 0.85rem;
+  }
+
+  .welcome-image {
+    width: 75%;
+    opacity: 0.19;
+  }
+
+  .dashboard-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .dash-tile {
+    min-height: 110px;
+  }
+
+  .dashboard-bottom > .card {
+    padding: 18px 14px;
+  }
+
+  .history-item-date {
+    font-size: 0.62rem;
+  }
+
+  .history-list li.history-row {
+    gap: 8px;
+  }
+
+  .history-cow {
+    width: 34px;
+    height: 34px;
+  }
+
+  .history-delete {
+    padding: 6px;
+  }
+
+  .history-pagination {
+    align-items: flex-start;
+  }
+
+  .work-area {
+    margin-top: 26px;
+  }
+
+  .follow-up-dialog-content {
+    padding: 20px;
+  }
+
+  .modal-actions > .button {
+    flex: 1;
+  }
+}
+
+
+/* ==========================================
+   BOVIHEALTH — MODAL DE EXCLUSÃO
+   ========================================== */
+
+#delete-assessment-modal {
+  box-sizing: border-box;
+  width: min(92vw, 480px);
+  max-width: 480px;
+  max-height: calc(100dvh - 40px);
+  margin: auto;
+  padding: 0;
+
+  border: none;
+  border-radius: 22px;
+
+  background: #ffffff;
+  color: #183629;
+
+  box-shadow: 0 24px 70px rgba(12, 35, 22, 0.25);
+  overflow: auto;
+}
+
+#delete-assessment-modal::backdrop {
+  background: rgba(16, 39, 28, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+/* Espaçamento interno */
+
+#delete-assessment-modal .follow-up-dialog-content {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 30px;
+}
+
+/* Cabeçalho */
+
+#delete-assessment-modal .follow-up-dialog-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+#delete-assessment-modal .eyebrow {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #708575;
+}
+
+#delete-assessment-modal h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #183629;
+}
+
+/* Botão de fechar */
+
+#delete-assessment-modal .modal-close {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  width: 38px;
+  height: 38px;
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #edf2eb;
+  color: #28543b;
+
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#delete-assessment-modal .modal-close:hover {
+  background: #dce9dd;
+}
+
+/* Mensagem de confirmação */
+
+#delete-assessment-modal
+.follow-up-dialog-content > p:not(.modal-error) {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #53665a;
+}
+
+#delete-assessment-modal
+.follow-up-dialog-content > p strong {
+  color: #183629;
+  font-weight: 700;
+}
+
+/* Mensagem de erro */
+
+#delete-assessment-modal .modal-error {
+  margin: 0;
+  color: #b02f2f;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+#delete-assessment-modal .modal-error:empty {
+  display: none;
+}
+
+/* Rodapé e botões */
+
+#delete-assessment-modal .modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+#delete-assessment-modal .modal-actions button {
+  box-sizing: border-box;
+  min-height: 44px;
+  padding: 11px 18px;
+
+  border-radius: 11px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Cancelar */
+
+#delete-assessment-cancel {
+  border: 1px solid #e0e9e0;
+  background: #edf4ee;
+  color: #28543b;
+}
+
+#delete-assessment-cancel:hover {
+  background: #dfece1;
+}
+
+/* Confirmar exclusão */
+
+#delete-assessment-confirm {
+  border: 1px solid #aa3434;
+  background: #aa3434;
+  color: #ffffff;
+}
+
+#delete-assessment-confirm:hover {
+  background: #902929;
+}
+
+#delete-assessment-confirm:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+/* Responsividade */
+
+@media (max-width: 500px) {
+  #delete-assessment-modal {
+    width: calc(100% - 28px);
+    border-radius: 18px;
+  }
+
+  #delete-assessment-modal .follow-up-dialog-content {
+    padding: 24px 20px;
+    gap: 16px;
+  }
+
+  #delete-assessment-modal h2 {
+    font-size: 21px;
+  }
+
+  #delete-assessment-modal .modal-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  #delete-assessment-modal .modal-actions button {
+    width: 100%;
+  }
+}
+
+
+#delete-assessment-modal .delete-assessment-description {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #53665a;
+}
+
+#delete-assessment-modal .delete-assessment-description strong {
+  color: #183629;
+}
+
+#delete-assessment-modal .modal-actions {
+  margin-top: 8px;
+}
+
+
+/* ========================================
+   ACOMPANHAMENTO REGISTRADO
+   ======================================== */
+
+.follow-up-section {
+  margin-top: 24px;
+  padding: 22px;
+  border: 1px solid #dce8dc;
+  border-radius: 16px;
+  background: #f7faf5;
+}
+
+.follow-up-section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.follow-up-section-header h3 {
+  margin: 6px 0 0;
+  font-size: 19px;
+  color: #183e2c;
+}
+
+.follow-up-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #67836c;
+}
+
+.follow-up-saved-badge {
+  padding: 7px 12px;
+  border-radius: 30px;
+  background: #e0eee0;
+  color: #286342;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.follow-up-saved-text {
+  margin: 0 0 18px;
+  padding: 16px;
+  border-left: 3px solid #7fa786;
+  border-radius: 0 10px 10px 0;
+  background: #fff;
+  color: #3d5344;
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Indicador no histórico */
+
+.history-follow-up-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 9px;
+  border-radius: 30px;
+  background: #e5f2e6;
+  color: #327347;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+@media (max-width: 650px) {
+  .follow-up-section {
+    padding: 16px;
+  }
+
+  .follow-up-section-header h3 {
+    font-size: 17px;
+  }
+
+  .history-follow-up-badge {
+    font-size: 9px;
+  }
+}

@@ -9,7 +9,7 @@
   <section class="dashboard-home" id="home">
     <section class="welcome"><div class="welcome-copy"><p class="eyebrow">BEM-VINDO AO BOVIHEALTH</p><h1>Cuidado e informação<br>para um rebanho <em>mais saudável.</em></h1><p class="welcome-text">Triagem orientativa com regras explícitas e referências técnicas para apoiar a saúde de vacas leiteiras.</p><a class="button hero-cta" href="#assessment-form">Iniciar triagem <span aria-hidden="true">→</span></a></div><div class="welcome-image" role="img" aria-label="Vaca leiteira em pastagem"></div></section>
     <nav class="dashboard-cards" aria-label="Áreas do sistema"><a class="dash-tile" href="#assessment-form"><span class="tile-icon">♧</span><span><strong>Triagem</strong><small>Responda perguntas sobre sinais observados e receba uma análise explicável.</small></span><span class="tile-arrow">›</span></a><a class="dash-tile" href="#animals"><span class="tile-icon tan">♧</span><span><strong>Rebanho</strong><small>Cadastre e consulte as vacas do rebanho.</small></span><span class="tile-arrow">›</span></a><a class="dash-tile" href="#history"><span class="tile-icon">▥</span><span><strong>Avaliações</strong><small>Acompanhe as triagens realizadas e suas conclusões.</small></span><span class="tile-arrow">›</span></a></nav>
-    <div class="dashboard-bottom"><section class="card dashboard-history" id="history"><div class="dashboard-section-title"><h2>▤ &nbsp; Últimas triagens</h2><a href="#assessment-form">Nova triagem →</a></div><p class="dashboard-helper">Registros reais salvos neste dispositivo.</p><ul id="history-list" class="history-list"></ul></section><section class="card dashboard-knowledge" id="sources-card"><div class="dashboard-section-title"><h2>▣ &nbsp; Conhecimento técnico</h2><a href="#knowledge-detail">Ver fontes ↓</a></div><div id="source-preview" class="knowledge-preview"></div><p class="dashboard-helper">Referências técnicas consultáveis; não representam homologação do sistema.</p></section></div>
+    <div class="dashboard-bottom"><section class="card dashboard-history" id="history"><div class="dashboard-section-title"><h2>▤ &nbsp; Últimas triagens</h2><a href="#assessment-form">Nova triagem →</a></div><p class="dashboard-helper">Registros reais salvos neste dispositivo.</p><ul id="history-list" class="history-list"></ul><div id="history-pagination" class="history-pagination" aria-label="Paginação das triagens"></div></section><section class="card dashboard-knowledge" id="sources-card"><div class="dashboard-section-title"><h2>▣ &nbsp; Conhecimento técnico</h2><a href="#knowledge-detail">Ver fontes ↓</a></div><div id="source-preview" class="knowledge-preview"></div><p class="dashboard-helper">Referências técnicas consultáveis; não representam homologação do sistema.</p></section></div>
   </section>
   <section class="work-area" id="work-area"><div class="work-heading"><p class="eyebrow">AVALIAÇÃO ORIENTATIVA</p><h2>Realizar triagem</h2><p>Informe o animal e os sinais observados. O sistema não substitui avaliação veterinária.</p></div>
   <div class="safety-note"><span class="safety-icon">!</span><p><strong>Apoio inicial, não diagnóstico.</strong> Se houver dificuldade respiratória, aumento súbito do flanco esquerdo ou incapacidade de se levantar, contate um médico-veterinário imediatamente.</p></div>
@@ -23,6 +23,70 @@
     <div id="knowledge-detail" class="card side-card sources-card"><div class="side-title"><span class="side-icon">i</span><h2>Conhecimento e fontes</h2></div><div id="sources" class="source-list subtle">Carregando base de conhecimento…</div><p class="version-line">Base de regras <span id="kb-version">—</span></p></div>
   </aside></div></section>
 </main>
+
+<!-- =========================================
+     MODAL DE EXCLUSÃO DE TRIAGEM
+     ========================================= -->
+
+<dialog
+  id="delete-assessment-modal"
+  class="follow-up-dialog"
+  aria-labelledby="delete-assessment-title"
+>
+  <div class="follow-up-dialog-content">
+
+    <div class="follow-up-dialog-heading">
+      <div>
+        <p class="eyebrow">HISTÓRICO</p>
+        <h2 id="delete-assessment-title">
+          Excluir triagem?
+        </h2>
+      </div>
+
+      <button
+        type="button"
+        class="modal-close"
+        id="delete-assessment-close"
+        aria-label="Fechar janela"
+      >
+        ×
+      </button>
+    </div>
+
+    <p class="delete-assessment-description">
+      Deseja excluir permanentemente a triagem
+      <strong id="delete-assessment-id"></strong>?
+      O acompanhamento vinculado também será excluído.
+      Esta ação não pode ser desfeita.
+    </p>
+
+    <p
+      id="delete-assessment-error"
+      class="modal-error"
+      role="alert"
+    ></p>
+
+    <div class="modal-actions">
+      <button
+        type="button"
+        class="button secondary"
+        id="delete-assessment-cancel"
+      >
+        Cancelar
+      </button>
+
+      <button
+        type="button"
+        class="button delete-confirm-button"
+        id="delete-assessment-confirm"
+      >
+        Excluir triagem
+      </button>
+    </div>
+
+  </div>
+</dialog>
+
 <dialog id="follow-up-modal" class="follow-up-dialog" aria-labelledby="follow-up-title">
   <form id="follow-up-form" class="follow-up-dialog-content">
     <div class="follow-up-dialog-heading"><div><p class="eyebrow">ACOMPANHAMENTO</p><h2 id="follow-up-title">Registrar acompanhamento</h2></div><button type="button" class="modal-close" id="follow-up-cancel" aria-label="Fechar">×</button></div>

@@ -96,3 +96,34 @@ def update_follow_up(assessment_id: int, follow_up: str) -> dict[str, Any] | Non
     with closing(connect()) as conn, conn:
         conn.execute("UPDATE assessments SET follow_up=? WHERE id=?", (follow_up, assessment_id))
     return get_assessment(assessment_id)
+
+
+def count_assessments(animal_id: int | None = None) -> int:
+    with closing(connect()) as conn:
+        if animal_id is None:
+            row = conn.execute("SELECT COUNT(*) FROM assessments").fetchone()
+        else:
+            row = conn.execute("SELECT COUNT(*) FROM assessments WHERE animal_id=?", (animal_id,)).fetchone()
+        return int(row[0])
+
+
+def list_assessments_page(page: int = 1, page_size: int = 5, animal_id: int | None = None) -> dict[str, Any]:
+    offset = (page - 1) * page_size
+    with closing(connect()) as conn:
+        if animal_id is None:
+            rows = conn.execute(
+                "SELECT * FROM assessments ORDER BY created_at DESC, id DESC LIMIT ? OFFSET ?",
+                (page_size, offset),
+            ).fetchall()
+        else:
+            rows = conn.execute(
+                "SELECT * FROM assessments WHERE animal_id=? ORDER BY created_at DESC, id DESC LIMIT ? OFFSET ?",
+                (animal_id, page_size, offset),
+            ).fetchall()
+    return {"items": [_assessment(row) for row in rows], "total": count_assessments(animal_id), "page": page, "page_size": page_size}
+
+
+def delete_assessment(assessment_id: int) -> bool:
+    with closing(connect()) as conn, conn:
+        cur = conn.execute("DELETE FROM assessments WHERE id=?", (assessment_id,))
+        return cur.rowcount > 0
